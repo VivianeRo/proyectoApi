@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>ApiMarvel</title>
+</head>
+<body>
+
+    <header>
+        <h1>ADA COMICS</h1>
+    </header>
+    <main>
+        <section>
+            <div >
+                <img src="imagenes/hero.jpg" aria-label="Foto de los super Heroes">
+            </div>
+        </section>
+        <section class="seccionForm">
+            <h2>Búsqueda</h2>
+            <form>
+               
+                <label for="inputBusqueda">
+                    <img src="imagenes/1490793870-user-interface25_82355.png" alt="Imagen de una lupa">
+                </label>
+                <input type="text" name="inputBusqueda"  id="inputBusqueda" class="inputBusqueda" placeholder="Ingrese su búsqueda "
+                  required="">
+                  <label>Tipo</label>
+                  <select  id="tipoDeBusqueda" class="tipoDeBusqueda">
+                    <option value="comics">Comics</option>
+                    <option value="personaje">Personaje</option>
+                  </select>
+                  <label>Ordenar</label>
+                  <select  id="ordenar" class="ordenar">
+                    <option value="a-z">A-Z</option>
+                    <option value="z-a">Z-A</option>
+                    <option value="masViejas">Mas viejas</option>
+                    <option value="masNuevas">Mas Nuevas</option>
+                  </select>
+                  <button id="btnBuscar" class="btnBuscar">Buscar</button>
+            </form>
+        </section>
+        <section id="resultados" class="resultados"> 
+            <h2>Resultados</h2>
+            <div class="containerComics">
+                <img>
+                <h3></h3>
+            </div>
+        </section>
+    </main>
+   <script src="main.js"></script>
+</body>
+</html>
