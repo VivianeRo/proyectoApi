@@ -169,3 +169,84 @@ const obtenerDetallesComics = (comicId, personajeId) => {
 
 
 obtenerComics();
+
+
+
+
+const buscarContenido = () => {
+  const inputBusqueda = document.getElementById('inputBusqueda').value.trim();
+  const tipoDeBusqueda = document.getElementById('tipoDeBusqueda').value;
+  const ordenar = document.getElementById('ordenar').value;
+  const resultados = document.querySelector('#input');
+
+  
+  resultados.innerHTML = '';
+
+  
+  document.querySelector('#resultados').style.display = 'none';
+  document.querySelector('#resultados2').style.display = 'none';
+
+  
+  if (!inputBusqueda) {
+    return;
+  }
+
+  let fetchUrl;
+  if (tipoDeBusqueda === 'personaje') {
+    
+    fetchUrl = `${url}${urlPersonaje}?nameStartsWith=${inputBusqueda}&ts=${ts}&apikey=${publicKey}&hash=${hash}`;
+  } else {
+    
+    fetchUrl = `${url}/v1/public/comics?titleStartsWith=${inputBusqueda}&ts=${ts}&apikey=${publicKey}&hash=${hash}`;
+  }
+
+  fetch(fetchUrl)
+    .then(response => response.json())
+    .then(datos => {
+      const resultadosData = tipoDeBusqueda === 'personaje' ? datos.data.results : datos.data.results;
+
+      if (resultadosData.length === 0) {
+        resultados.innerHTML = '<p>No se encontró lo que buscabas.</p>';
+        resultados.style.display = 'block';
+        return; 
+      }
+
+      
+      if (ordenar === 'a-z') {
+        resultadosData.sort((a, b) => a.name ? a.name.localeCompare(b.name) : a.title.localeCompare(b.title));
+      } else if (ordenar === 'z-a') {
+        resultadosData.sort((a, b) => b.name ? b.name.localeCompare(a.name) : b.title.localeCompare(a.title));
+      } else if (ordenar === 'masViejas') {
+        resultadosData.sort((a, b) => new Date(a.dates[0].date) - new Date(b.dates[0].date));
+      } else if (ordenar === 'masNuevas') {
+        resultadosData.sort((a, b) => new Date(b.dates[0].date) - new Date(a.dates[0].date));
+      }
+
+      let info = '';
+      resultadosData.forEach(item => {
+        if (tipoDeBusqueda === 'personaje') {
+          info += `
+            <div class="containerComics">
+              <img class="containerComicsImagen" src="${item.thumbnail.path}.${item.thumbnail.extension}" alt="${item.name}">
+              <h3>${item.name}</h3>
+            </div>
+          `;
+        } else {
+          info += `
+            <div class="comicItem" data-comic-id="${item.id}">
+              <img src="${item.thumbnail.path}.${item.thumbnail.extension}" alt="${item.title}">
+              <h4>${item.title}</h4>
+            </div>
+          `;
+        }
+      });
+      resultados.innerHTML = info;
+      resultados.style.display = 'block';
+    });
+};
+
+
+document.getElementById('btnBuscar').addEventListener('click', (event) => {
+  event.preventDefault(); 
+  buscarContenido();
+});
