@@ -136,7 +136,7 @@ const obtenerDetallesComics = (comicId, personajeId) => {
           
           const info = `
             <div class="containerResultado3">
-              <div class="comicItem">
+              <div class="containerComics">
                 <img src="${comic.thumbnail.path}.${comic.thumbnail.extension}" alt="${comic.title}">
               </div>
               <div>
@@ -149,7 +149,7 @@ const obtenerDetallesComics = (comicId, personajeId) => {
                 <p>${descripcion}</p>
               </div>
             </div>
-            <div class="comicItem">
+            <div class="containerComics">
               <img class="containerComicsImagen" src="${personaje.thumbnail.path}.${personaje.thumbnail.extension}" alt="${personaje.name}">
             </div>
             <h2>${personaje.name}</h2>
@@ -206,8 +206,8 @@ const buscarContenido = () => {
       const resultadosData = tipoDeBusqueda === 'personaje' ? datos.data.results : datos.data.results;
 
       if (resultadosData.length === 0) {
-        resultados.innerHTML = '<p>No se encontró lo que buscabas.</p>';
-        resultados.style.display = 'block';
+        resultados.innerHTML = '<h2>No se encontró el búsqueda.</h2>';
+        
         return; 
       }
 
@@ -233,15 +233,15 @@ const buscarContenido = () => {
           `;
         } else {
           info += `
-            <div class="comicItem" data-comic-id="${item.id}">
-              <img src="${item.thumbnail.path}.${item.thumbnail.extension}" alt="${item.title}">
+            <div class="input" data-comic-id="${item.id}">
+              <img class"inputImagen"  src="${item.thumbnail.path}.${item.thumbnail.extension}" alt="${item.title}">
               <h4>${item.title}</h4>
             </div>
           `;
         }
       });
       resultados.innerHTML = info;
-      resultados.style.display = 'block';
+      
     });
 };
 

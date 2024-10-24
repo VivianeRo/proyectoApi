@@ -16,12 +16,11 @@
     padding: 10px;
     font-size: 32px;
   }
-   div {
-    
+
+  .hero {
     width: 100%;
-    height:400px;
-    
   }
+   
   div img {
     width: 100%;
     height: 100%;
@@ -83,7 +82,8 @@
     width: 200px;
     height: 250px;
     border: 1px solid black;
-    margin-top: 50px;
+    margin-top: 10px;
+    
   }
   .comicItem {
     width: 200px;
@@ -118,10 +118,9 @@
     display: flex;
     gap: 50px;
     font-size: 20px;
-    
-
-    
+   
   }
+
   .resultados3Informacion {
     margin-top: 50px;
     gap: 5px;
@@ -139,6 +138,23 @@
       font-size: 16px;
       margin-bottom: 5px;
     }
+  }
+  .input {
+    
+    width: 250px;
+    height: 250px;
+    margin: 20px;
+  }
+  .inputImagen {
+    width: 100%;
+    height: 100%;
+  }
+  #input {
+    gap: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 20px;
   }
   
 
@@ -160,13 +176,20 @@
       margin-top: 30px;
       margin: auto;
     }
-    .resultados {
-      display: block;
+    .containerResultado3 {
+      display: flex;
+      flex-direction: column;
+      font-size: 16px;
+      gap: 10px;
     }
-    .resultados2 {
-      display: block;
+    div {
+      width: 200px;
+      margin-top: 30px;
     }
-    
+    .hero {
+      width: 100%;
+      margin: 0;
+    }
    }
 
   
