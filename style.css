@@ -156,10 +156,17 @@
     flex-wrap: wrap;
     margin: 20px;
   }
+  footer {
+    height: 100px;
+    background-color: black;
+    text-align: center;
+    color: white;
+    
+  }
+  footer h2 {
+    padding-top: 50px;
+  }
   
-
-  
-
   @media (max-width:782px ) {
     .inputBusqueda{
        width: 100%;
